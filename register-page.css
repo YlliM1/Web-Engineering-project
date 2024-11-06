@@ -1,0 +1,122 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+#Background-video{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+
+}
+
+.wrapper {
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(30px);
+    color: white;
+    border-radius: 10px;
+    padding: 30px 40px;
+    border: 1px solid gray;
+    
+}
+
+.wrapper h1 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.inputBox {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.inputBox input {
+    width: 80%;
+    padding: 5px;
+    border: 1px solid white;
+    outline: none;
+    background-color: transparent;
+    border-radius: 40px;
+    font-size: 16px;
+    color: white;
+    padding: 20px 45px 20px 20px;
+    padding-right: 45px;
+}
+
+.inputBox input::placeholder{
+    color: white;
+}
+
+
+
+.styles.inputBox::placeholder{
+    color: white !important;
+}
+
+.terms {
+    margin-bottom: 20px;
+}
+
+.terms label {
+    font-size: 14px;
+    color: white;
+}
+
+button[type='submit'] {
+    width: 96%;
+    padding: 10px;
+    border: none;
+    border-radius:20px;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type='submit']:hover {
+    background-color: rgb(75, 75, 75);
+    transition: 1s ease;
+}
+
+.FirstLastName{
+    display: flex;
+    justify-content: space-between;
+}
+
+.firstName, .lastName{
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.firstName input, .lastName input{
+    width: 50%;
+    padding: 5px;
+    border: 1px solid white;
+    outline: none;
+    background-color: transparent;
+    border-radius: 40px;
+    font-size: 16px;
+    color: white;
+    padding: 20px 45px 20px 20px;
+    padding-right: 45px;
+}
+
+.lastName input, .firstName input{
+    width: 60%;
+}
+
+.firstName input::placeholder, .lastName input::placeholder{
+    color: white;
+}
