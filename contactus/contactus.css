@@ -1,0 +1,87 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    background: url(/images/contactbackground.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+#foto{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+
+}
+
+.contact-form {
+    max-width: 320px;
+    margin: 50px auto;
+    background-color: #080e07;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(128, 128, 128,0.6);
+    margin-right: 120px;
+    color: white;
+    
+}
+
+
+label {
+    font-weight: bold;
+        display: block;
+        font-weight: bold;
+        padding-top: 10px;
+        padding-bottom: 10px;
+
+}
+#butoni{
+    margin-left: 1px;
+    margin-top: 10px;
+
+}
+
+input[type="text"],
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input[type="message"] {
+    width: 100%;
+    padding: 10px 10px;
+    border: 1px solid #c6c4c4;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+
+button[type="submit"] {
+    background-color: rgba(128, 128, 128,0.6);
+    color: white;
+    border: none;
+    padding: 10px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: rgba(78, 68, 68, 0.6);
+}
+.register-form h3{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h3 {
+    text-align: left;
+}
+.row{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+.input-group{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
