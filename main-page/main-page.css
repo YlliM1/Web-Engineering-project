@@ -2,7 +2,10 @@ body{
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: rgb(57, 57, 57);
+    background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(../images/backgroundimage.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 header{
@@ -64,7 +67,7 @@ nav ul li:hover{
     margin: 0 auto;
     overflow: hidden;
     border-radius: 10px;
-    box-shadow: 0px 4px 20px rgba(128, 128, 128, 0.6);
+    box-shadow: 0px 4px 10px rgba(128, 128, 128, 0.6);
 }
 
 .slides {
