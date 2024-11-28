@@ -13,6 +13,14 @@
 
 }
 
+.fullPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; 
+}
+
+
 .wrapper {
     width: 400px;
     margin: 0 auto;
@@ -116,6 +124,15 @@ button[type='submit']:hover {
 .lastName input, .firstName input{
     width: 60%;
 }
+
+.error {
+    color: #e63946;
+    font-size: 0.875rem;
+    margin-top: 5px;
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 
 .firstName input::placeholder, .lastName input::placeholder{
     color: white;
