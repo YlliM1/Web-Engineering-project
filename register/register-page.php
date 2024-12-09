@@ -1,3 +1,41 @@
+<?php
+session_start();
+include '../config.php';
+
+
+if ($_SERVER['REQUEST_METHOD']==='POST'){
+
+    $firstName= trim($_POST['firstName']);
+    $lastName = trim($_POST['lastName']);
+    $username = trim($_POST['username']);
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
+
+    $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
+    $sql= "INSERT INTO users(first_name, last_name, username, email, password) VALUES ('$firstName','$lastName','$username','$email','$hashedPassword')";
+
+    if($conn->query($sql)=== TRUE){
+        header('Location: ../login/index.php');
+        exit();
+    }else{
+        echo "Error:" . $sql . "<br>" .$conn-> error;
+    }
+
+
+
+}
+
+
+
+
+
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,28 +51,28 @@
 
     <div class="fullPage">
         <div class="wrapper">
-            <form onsubmit="ValidateForm(event)" action="">
+            <form onsubmit="ValidateForm(event)" action="register-page.php" method="post">
                 <h1>Sign up</h1>
                 <div class="FirstLastName">
                     <div class="firstName">
-                        <input type="text" id="firstName" placeholder="First Name" name="" />
+                        <input type="text" id="firstName" placeholder="First Name" name="firstName" />
                         <span id="firstNameError" class="error"></span>
                     </div>
                     <div class="lastName">
-                        <input type="text" id="lastName" placeholder="Last Name" name="" />
+                        <input type="text" id="lastName" placeholder="Last Name" name="lastName" />
                         <span id="lastNameError" class="error"></span>
                     </div>
                 </div>
                 <div class="inputBox">
-                    <input type="text" id="username" placeholder="Username" name="" />
+                    <input type="text" id="username" placeholder="Username" name="username" />
                     <span id="usernameError" class="error"></span>
                 </div>
                 <div class="inputBox">
-                    <input type="text" id="email" placeholder="Email" name="" />
+                    <input type="text" id="email" placeholder="Email" name="email" />
                     <span id="emailError" class="error"></span>
                 </div>
                 <div class="inputBox">
-                    <input type="password" id="password" placeholder="Password" name="" />
+                    <input type="password" id="password" placeholder="Password" name="password" />
                     <span id="passwordError" class="error"></span>
                 </div>
                 <button type="submit">Register</button>
@@ -49,7 +87,6 @@
         }
 
         function ValidateForm(event) {
-            event.preventDefault();
 
             const firstName = document.getElementById("firstName").value.trim();
             const lastName = document.getElementById("lastName").value.trim();
@@ -114,8 +151,7 @@
                 return;
             }
 
-           
-            alert("Registration successful!");
+            event.target.submit(); 
         }
     </script>
 </body>

@@ -61,8 +61,6 @@
                 return;
             }
             alert("Login successful!");
-
-           
         }
     </script>
 </body>
