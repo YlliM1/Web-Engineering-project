@@ -1,3 +1,54 @@
+
+<?php 
+session_start();
+include '../config.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+   
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
+
+    
+    if (!empty($username) && !empty($password)) {
+        
+        $sql = "SELECT id, username, password FROM users WHERE username = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $user = $result->fetch_assoc();
+            
+            
+            if (password_verify($password, $user['password'])) {
+               
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['username'] = $user['username'];
+
+                
+                header('Location: ../main-page/main-page.php');
+                exit();
+            } else {
+                $error = "Invalid password.";
+            }
+        } else {
+            $error = "No user found with that username.";
+        }
+    } else {
+        $error = "Please fill in both fields.";
+    }
+}
+
+?>
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,8 +62,9 @@
 
     <div class="fullPage">
         <div class="loginForm">
-            <form onsubmit="ValidateForm(event)" action="">
+            <form onsubmit="ValidateForm(event)" action="index.php" method ="post">
                 <h1>Login</h1>
+
                 <div class="inputBox">
                     <input type="text" id="username" placeholder="Username" name="username" />
                     <span id="usernameError" class="error"></span>
@@ -29,7 +81,7 @@
     <script>
         function ValidateForm(event) {
         
-            event.preventDefault();
+            
 
         
             const username = document.getElementById("username").value.trim();
@@ -60,7 +112,9 @@
                 passwordError.textContent = "Password must be at least 6 characters long!";
                 return;
             }
-            alert("Login successful!");
+
+            event.target.submit();
+          
         }
     </script>
 </body>
