@@ -1,17 +1,13 @@
-
 <?php 
 session_start();
 include '../config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-   
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
 
-    
     if (!empty($username) && !empty($password)) {
-        
-        $sql = "SELECT id, username, password FROM users WHERE username = ?";
+        $sql = "SELECT id, username, first_name, password FROM users WHERE username = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $username);
         $stmt->execute();
@@ -19,14 +15,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($result->num_rows > 0) {
             $user = $result->fetch_assoc();
-            
-            
+
             if (password_verify($password, $user['password'])) {
-               
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['username'] = $user['username'];
-
-                
+                $_SESSION['first_name'] = $user['first_name']; 
                 header('Location: ../main-page/main-page.php');
                 exit();
             } else {
@@ -39,15 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = "Please fill in both fields.";
     }
 }
-
 ?>
-
-
-
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -55,15 +40,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="../login/login.css">
 </head>
-<link rel="stylesheet" href="../login/login.css">
 <body>
     <video autoplay muted loop id="bck-video" src="../images/9694810-hd_1920_1080_25fps.mp4"></video>
-
     <div class="fullPage">
         <div class="loginForm">
-            <form onsubmit="ValidateForm(event)" action="index.php" method ="post">
+            <form onsubmit="validateForm(event)" action="index.php" method="post">
                 <h1>Login</h1>
+
+                <?php if (isset($error)): ?>
+                    <p class="error-message"><?php echo htmlspecialchars($error); ?></p>
+                <?php endif; ?>
 
                 <div class="inputBox">
                     <input type="text" id="username" placeholder="Username" name="username" />
@@ -79,22 +67,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <script>
-        function ValidateForm(event) {
-        
-            
+        function validateForm(event) {
+            event.preventDefault();
 
-        
             const username = document.getElementById("username").value.trim();
             const password = document.getElementById("password").value.trim();
 
-            
             const usernameError = document.getElementById("usernameError");
             const passwordError = document.getElementById("passwordError");
 
-        
             usernameError.textContent = "";
             passwordError.textContent = "";
-
 
             if (username === "") {
                 usernameError.textContent = "Username is required!";
@@ -114,7 +97,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             event.target.submit();
-          
         }
     </script>
 </body>
