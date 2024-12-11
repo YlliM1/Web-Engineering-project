@@ -1,0 +1,132 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(34, 34, 34);
+    color: #ffffff; 
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+section#admin-dashboard {
+    margin: 0 auto;
+    max-width: 800px;
+    width: 100%;
+    background-color: #444;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+    text-align: center;
+    color: #ffffff;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+p {
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #666; 
+}
+
+table th {
+    background-color: #555;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+table td {
+    background-color: #333;
+    color: #ffffff;
+}
+
+table tr:hover {
+    background-color: #555; 
+}
+
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #666; 
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    display: inline-block;
+}
+
+a:hover {
+    background-color: #666; 
+    color: #000;
+}
+
+
+@media (max-width: 768px) {
+    table {
+        font-size: 14px;
+    }
+
+    table th, table td {
+        padding: 8px;
+    }
+}
+
+
+
+.icon {
+    color: #ffffff;
+    font-size: 18px; 
+    margin: 0 5px; 
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    outline: none; 
+    border: none; 
+    border-radius: 0;
+}
+
+
+.icon:hover {
+    background-color: #666; 
+    color: #000; 
+}
+
+
+.edit-icon {
+    color: #007bff;
+}
+
+.edit-icon:hover {
+    background-color: #007bff;
+    color: #ffffff; 
+}
+
+.delete-icon {
+    color: #f44336; 
+}
+
+.delete-icon:hover {
+    background-color: #f44336; 
+    color: #ffffff; 
+}
+

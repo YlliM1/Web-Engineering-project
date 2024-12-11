@@ -2,10 +2,9 @@
 session_start();
 include '../config.php';
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-if ($_SERVER['REQUEST_METHOD']==='POST'){
-
-    $firstName= trim($_POST['firstName']);
+    $firstName = trim($_POST['firstName']);
     $lastName = trim($_POST['lastName']);
     $username = trim($_POST['username']);
     $email = trim($_POST['email']);
@@ -13,25 +12,26 @@ if ($_SERVER['REQUEST_METHOD']==='POST'){
 
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-    $sql= "INSERT INTO users(first_name, last_name, username, email, password) VALUES ('$firstName','$lastName','$username','$email','$hashedPassword')";
+    $sql = "INSERT INTO users (first_name, last_name, username, email, password) VALUES (?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sssss", $firstName, $lastName, $username, $email, $hashedPassword);
 
-    if($conn->query($sql)=== TRUE){
+    if ($stmt->execute()) {
+        if ($username === 'yllmurati') {
+            $updateSql = "UPDATE users SET role = 'admin' WHERE username = ?";
+            $updateStmt = $conn->prepare($updateSql);
+            $updateStmt->bind_param("s", $username);
+            $updateStmt->execute();
+        }
+        
         header('Location: ../login/index.php');
         exit();
-    }else{
-        echo "Error:" . $sql . "<br>" .$conn-> error;
+    } else {
+        echo "Error: " . $stmt->error;
     }
-
-
-
 }
-
-
-
-
-
-
 ?>
+
 
 
 

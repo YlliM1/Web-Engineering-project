@@ -1,21 +1,19 @@
 <?php
 session_start();
 
-
 if (session_status() === PHP_SESSION_ACTIVE) {
     error_log("Session is active");
 } else {
     error_log("Session is not active");
 }
 
-
-if (!isset($_SESSION['user_id']) || !isset($_SESSION['first_name'])) {
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
     header('Location: ../login/index.php');
     exit;
 }
 
-// Set the login status
 $isLoggedIn = isset($_SESSION['user_id']) && isset($_SESSION['first_name']);
+$isAdmin = $isLoggedIn && isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +23,7 @@ $isLoggedIn = isset($_SESSION['user_id']) && isset($_SESSION['first_name']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
     <link rel="stylesheet" href="../main-page/main-page.css">
+    
 </head>
 <body>
     <section id="section-1">
@@ -41,7 +40,7 @@ $isLoggedIn = isset($_SESSION['user_id']) && isset($_SESSION['first_name']);
                             <li class="user-menu" onclick="togglePopupMenu()">
                                 <span class="nav-link nav-link-active"><?php echo htmlspecialchars($_SESSION['first_name']); ?></span>
                                 <div class="popup-menu" id="popupMenu">
-                                    <a href="../profile.php">Profile</a>
+                                    <a href="../profile/profile.php">Profile</a>
                                     <a href="../logout.php">Logout</a>
                                 </div>
                             </li>
@@ -90,7 +89,29 @@ $isLoggedIn = isset($_SESSION['user_id']) && isset($_SESSION['first_name']);
                 <button class="buy-button-1">Buy Now</button>
             </div>
         </div>
-        <!-- Additional cards here -->
+        <div class="card2">
+            <img class="card2-photo" src="../images/card2photo.png" alt="">
+            <hr style="width: 90%; border: 1px solid rgba(128, 128, 128, 0.6)  ;">
+            <label for="">Nike "Air Force 1 "</label>
+            <div class="button-container">
+                <button class="buy-button-1">Buy Now</button>
+            </div>
+        </div>
+        <div class="card1">
+            <img class="card1-photo" src="../images/card3photo.png" alt="">
+            <hr style="width: 90%; border: 1px solid rgba(128, 128, 128, 0.6)  ;">
+            <label for="">Jordan "Military Black"</label>
+            <div class="button-container">
+                <button class="buy-button-1">Buy Now</button>
+            </div>
+        </div>
+        <div class="card1">
+            <img class="card1-photo" src="../images/card4photo.png" alt="">
+            <hr style="width: 90%; border: 1px solid rgba(128, 128, 128, 0.6)  ;">
+            <label for="">Nike " Air Max "</label>
+            <div class="button-container">
+                <button class="buy-button-1">Buy Now</button>
+            </div>
     </section>
 
     <script>
