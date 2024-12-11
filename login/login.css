@@ -127,3 +127,11 @@ button[type='submit']:hover {
     display: block;
     font-family: Arial, Helvetica, sans-serif;
 }
+.registerLink{
+    margin-top: 20px;
+    margin-left: 140px;
+}
+.registerLink a{
+    color: white;
+    
+}
