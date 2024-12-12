@@ -48,7 +48,7 @@ function getAllUsers($conn) {
                         <td><?= htmlspecialchars($user['email']); ?></td>
                         <td><?= htmlspecialchars($user['role']); ?></td>
                         <td>
-                        <a href="../admin/edit-user.php?id=<?= $user['id']; ?>" class="icon edit-icon" title="Edit">
+                        <a href="edit_users.php?id=<?= $user['id']; ?>" class="icon edit-icon" title="Edit">
                             <i class="fas fa-pen"></i>
                         </a>
                         <a href="../admin/delete-user.php?id=<?= $user['id']; ?>" class="icon delete-icon" title="Delete" 

@@ -1,0 +1,83 @@
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(34, 34, 34); /* Dark background */
+    color: #ffffff; /* Light text */
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+}
+
+/* Container for the form */
+form {
+    background-color: #444; /* Dark container background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Shadow effect */
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Form heading */
+h2 {
+    text-align: center;
+    color: #ffffff;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Label styles */
+form label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff; /* White text */
+}
+
+/* Input and select styles */
+form input,
+form select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #666; /* Dark border */
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #333; /* Dark input background */
+    color: #ffffff; /* Light text */
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+form input:focus,
+form select:focus {
+    background-color: #444; /* Slightly lighter */
+    border-color: #007bff; /* Blue focus border */
+    outline: none;
+}
+
+/* Submit button styles */
+form input[type="submit"] {
+    background-color: #007bff; /* Blue button */
+    color: #ffffff; /* White text */
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+    background-color: #0056b3; /* Darker blue */
+}
+
+/* Adjust spacing between inputs */
+form input:not([type="submit"]),
+form select {
+    margin-bottom: 15px;
+}
