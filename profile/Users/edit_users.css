@@ -1,83 +1,96 @@
-/* General Styles */
 body {
     margin: 0;
     padding: 0;
-    background-color: rgb(34, 34, 34); /* Dark background */
-    color: #ffffff; /* Light text */
+    background-color: rgb(34, 34, 34);
+    color: #ffffff;
     font-family: Arial, sans-serif;
     display: flex;
-    justify-content: center;
+    flex-direction: column; /* Allows stacking of elements */
     align-items: center;
-    height: 100vh; /* Full viewport height */
+    justify-content: center;
+    min-height: 100vh;
 }
 
-/* Container for the form */
-form {
-    background-color: #444; /* Dark container background */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Shadow effect */
-    width: 100%;
-    max-width: 500px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-/* Form heading */
 h2 {
     text-align: center;
     color: #ffffff;
-    font-size: 24px;
-    margin-bottom: 20px;
+    font-size: 20px; /* Adjusted font size for prominence */
+    margin-bottom: 15px; /* Space between title and form */
 }
 
-/* Label styles */
+form {
+    background-color: #444;
+    padding: 21px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    width: 100%;
+    max-width: 475px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    gap: 15px;
+}
+
 form label {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
-    color: #ffffff; /* White text */
+    color: #ffffff;
+    display: block;
+    margin-bottom: 5px;
 }
 
-/* Input and select styles */
 form input,
 form select {
     width: 100%;
-    padding: 12px;
-    border: 1px solid #666; /* Dark border */
-    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid #666;
+    border-radius: 4px;
     font-size: 14px;
-    background-color: #333; /* Dark input background */
-    color: #ffffff; /* Light text */
-    transition: border-color 0.3s, background-color 0.3s;
+    background-color: #333;
+    color: #ffffff;
+    box-sizing: border-box;
 }
 
 form input:focus,
 form select:focus {
-    background-color: #444; /* Slightly lighter */
-    border-color: #007bff; /* Blue focus border */
+    background-color: #444;
+    border-color: #007bff;
     outline: none;
 }
 
-/* Submit button styles */
-form input[type="submit"] {
-    background-color: #007bff; /* Blue button */
-    color: #ffffff; /* White text */
-    font-size: 16px;
+form input[type="submit"],
+.Profile_button {
+    background-color: #2e2e2e;
+    color: #ffffff;
+    font-size: 14px;
     font-weight: bold;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     padding: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-form input[type="submit"]:hover {
-    background-color: #0056b3; /* Darker blue */
+
+
+form input[type="submit"],
+.Profile_button {
+    background-color: #2e2e2e;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%; /* Ensure it takes the full width like the submit button */
+    text-align: center; /* Center text */
 }
 
-/* Adjust spacing between inputs */
-form input:not([type="submit"]),
-form select {
-    margin-bottom: 15px;
+form input[type="submit"]:hover,
+.Profile_button:hover {
+    background-color: rgb(34, 34, 34);
+    transform: scale(1.05);
 }
+
