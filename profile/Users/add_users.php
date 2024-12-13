@@ -2,105 +2,84 @@
 include '../../config.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $id = $_POST['id'];
+    
     $firstName = $_POST['first_name'];
     $lastName = $_POST['last_name'];
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $role = $_POST['role']; 
+    $role = $_POST['role'];
 
-    $sql = "UPDATE users SET
-        first_name='$firstName',
-        last_name='$lastName',
-        username='$username',
-        email='$email',
-        password='$password',
-        role='$role'  
-        WHERE id='$id'";
+ 
+    $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
+    $sql = "INSERT INTO users (first_name, last_name, username, email, password, role)
+            VALUES ('$firstName', '$lastName', '$username', '$email', '$hashedPassword', '$role')";
 
     if ($conn->query($sql) === TRUE) {
+       
         header('Location: view_users.php');
-        exit; 
+        exit;
     } else {
+        
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit User</title>
-    <link rel="stylesheet" href="edit_users.css">
+    <title>Add User</title>
+    <link rel="stylesheet" href="add_users.css">
 </head>
 <body>
 
-<?php
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-    $sql = "SELECT * FROM users WHERE id='$id'";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
-    } else {
-        echo "User not found.";
-        exit;
-    }
-} else {
-    echo "Invalid User ID.";
-    exit;
-}
-?>
-
-<h2>Edit User:</h2>
-<form action="edit_users.php" method="POST" onsubmit="ValidateForm(event)">
-    <input type="hidden" name="id" value="<?php echo $user['id']; ?>">
-
+<h2>Add User:</h2>
+<form action="add_users.php" method="POST" onsubmit="ValidateForm(event)">
     <div class="row">
         <label for="first_name">First Name:</label>
-        <input type="text" id="firstName" name="first_name" value="<?php echo $user['first_name']; ?>" required>
+        <input type="text" id="firstName" name="first_name" value="">
         <span id="firstNameError" style="color: red;"></span>
     </div>
 
     <div class="row">
         <label for="last_name">Last Name:</label>
-        <input type="text" id="lastName" name="last_name" value="<?php echo $user['last_name']; ?>" required>
+        <input type="text" id="lastName" name="last_name" value="">
         <span id="lastNameError" style="color: red;"></span>
     </div>
 
     <div class="row">
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username" value="<?php echo $user['username']; ?>" required>
+        <input type="text" id="username" name="username" value="">
         <span id="usernameError" style="color: red;"></span>
     </div>
 
     <div class="row">
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="<?php echo $user['email']; ?>" required>
+        <input type="email" id="email" name="email" value="">
         <span id="emailError" style="color: red;"></span>
     </div>
 
     <div class="row">
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" value="<?php echo $user['password']; ?>" required>
+        <input type="password" id="password" name="password" value="">
         <span id="passwordError" style="color: red;"></span>
     </div>
 
     <div class="row">
         <label for="role">Role:</label>
-        <select name="role" required>
-            <option value="admin" <?php if ($user['role'] == 'admin') echo 'selected'; ?>>Admin</option>
-            <option value="user" <?php if ($user['role'] == 'user') echo 'selected'; ?>>User</option>
+        <select name="role" >
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
         </select>
     </div>
 
-    <input type="submit" value="Update User">
-    
-
+    <input type="submit" value="Add User">
     <button type="button" class="Profile_button" onclick="window.location.href='../profile.php';">Back to Profile</button>
 </form>
 
@@ -131,51 +110,51 @@ if (isset($_GET['id'])) {
         emailError.textContent = "";
         passwordError.textContent = "";
 
+        let formIsValid = true;
+
         if (firstName === "") {
             firstNameError.textContent = "First Name is required!";
-            return;
-        }
-        if (firstName.length < 3) {
+            formIsValid = false;
+        } else if (firstName.length < 3) {
             firstNameError.textContent = "First Name must be longer than 3 characters!";
-            return;
+            formIsValid = false;
         }
 
         if (lastName === "") {
             lastNameError.textContent = "Last Name is required!";
-            return;
-        }
-        if (lastName.length < 3) {
+            formIsValid = false;
+        } else if (lastName.length < 3) {
             lastNameError.textContent = "Last Name must be longer than 3 characters!";
-            return;
+            formIsValid = false;
         }
 
         if (username === "") {
             usernameError.textContent = "Username is required!";
-            return;
-        }
-        if (username.length < 3) {
+            formIsValid = false;
+        } else if (username.length < 3) {
             usernameError.textContent = "Username must be longer than 3 characters!";
-            return;
+            formIsValid = false;
         }
 
         if (email === "") {
             emailError.textContent = "Email is required!";
-            return;
-        }
-        if (!isValidEmail(email)) {
+            formIsValid = false;
+        } else if (!isValidEmail(email)) {
             emailError.textContent = "Invalid email format!";
-            return;
+            formIsValid = false;
         }
 
         if (password === "") {
             passwordError.textContent = "Password is required!";
-            return;
-        }
-        if (password.length < 6) {
+            formIsValid = false;
+        } else if (password.length < 6) {
             passwordError.textContent = "Password must be at least 6 characters long!";
-            return;
+            formIsValid = false;
         }
-        event.target.submit();
+
+        if (formIsValid) {
+            event.target.submit();
+        }
     }
 </script>
 
