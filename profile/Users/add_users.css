@@ -15,7 +15,7 @@ h2 {
     text-align: center;
     color: #ffffff;
     font-size: 20px; 
-    margin-bottom: 15px; 
+    margin-bottom: 15px;
 }
 
 form {
@@ -69,23 +69,8 @@ form input[type="submit"],
     padding: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-
-
-form input[type="submit"],
-.Profile_button {
-    background-color: #2e2e2e;
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: bold;
-    border: none;
-    border-radius: 4px;
-    padding: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    width: 100%; 
-    text-align: center; 
+    width: 100%;
+    text-align: center;
 }
 
 form input[type="submit"]:hover,
@@ -94,3 +79,20 @@ form input[type="submit"]:hover,
     transform: scale(1.05);
 }
 
+.Profile_button {
+    background-color: #2e2e2e;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+    text-align: center;
+}
+
+.Profile_button:hover {
+    background-color: rgb(34, 34, 34);
+    transform: scale(1.05);
+}

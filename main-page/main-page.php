@@ -23,6 +23,7 @@ $isAdmin = $isLoggedIn && isset($_SESSION['role']) && $_SESSION['role'] === 'adm
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
     <link rel="stylesheet" href="../main-page/main-page.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
 </head>
 <body>
@@ -37,18 +38,20 @@ $isAdmin = $isLoggedIn && isset($_SESSION['role']) && $_SESSION['role'] === 'adm
                         <li><a href="#">SERVICES</a></li>
                         <li><a href="../contactus/contactus.html">CONTACT US</a></li>
                         <?php if ($isLoggedIn): ?>
-                            <li class="user-menu" onclick="togglePopupMenu()">
-                                <span class="nav-link nav-link-active"><?php echo htmlspecialchars($_SESSION['first_name']); ?></span>
-                                <div class="popup-menu" id="popupMenu">
-                                    <a href="../profile/profile.php">Profile</a>
-                                    <a href="../logout.php">Logout</a>
-                                </div>
-                            </li>
-                        <?php else: ?>
-                            <li>
-                                <a href="../login/index.php" class="nav-link nav-link-active">LOG IN</a>
-                            </li>
-                        <?php endif; ?>
+                        <li class="user-menu" onclick="togglePopupMenu()">
+                            <span class="nav-link nav-link-active">
+                                <i class="fas fa-user-circle"></i> <?php echo htmlspecialchars($_SESSION['first_name']); ?>
+                            </span>
+                            <div class="popup-menu" id="popupMenu">
+                                <a href="../profile/profile.php">Profile</a>
+                                <a href="../logout.php">Logout</a>
+                            </div>
+                        </li>
+                    <?php else: ?>
+                        <li>
+                            <a href="../login/index.php" class="nav-link nav-link-active">LOG IN</a>
+                        </li>
+                    <?php endif; ?>
                     </ul>
                 </nav>
             </header>
