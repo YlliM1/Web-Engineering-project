@@ -1,3 +1,56 @@
+<?php  
+
+include '../config.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $firstName = $_POST['firstName'];
+    $lastName = $_POST['lastName'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $message = $_POST['message'];
+
+    
+    $conn = new mysqli('localhost', 'root', '', 'shoe_shop');
+
+    
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    } else {
+        
+        $stmt = $conn->prepare("INSERT INTO contactform (firstName, lastName, email, phone, message) VALUES (?, ?, ?, ?, ?)");
+        
+        
+        if ($stmt === false) {
+            die('Error preparing statement: ' . $conn->error);  
+        }
+
+        $stmt->bind_param("sssss", $firstName, $lastName, $email, $phone, $message);
+        
+        
+        if ($stmt->execute()) {
+            echo "<script>alert('Registration successfully!');</script>";
+        } else {
+            echo "Error while sending the message: " . $stmt->error; 
+        }
+        
+        
+        $stmt->close();
+        $conn->close();
+    }
+}
+
+
+
+
+
+
+
+    
+
+
+   
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +62,7 @@
 <body>
     <div class ="contact-form">
         <h3>Let's Talk</h3>
-        <form >
+        <form action ="contactus.php" method="POST">
             <div class="row">
                 <div class="input-group">
             <label for="firstName">First Name</label>
@@ -17,7 +70,7 @@
                 </div>
             <div class="input-group">
             <label for="lastName">Last Name</label>
-            <input type="text" name="larstName" id="lastName">
+            <input type="text" name="lastName" id="lastName">
             </div>
             </div>
 
