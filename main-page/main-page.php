@@ -42,10 +42,10 @@ $result = $conn->query($shoesQuery);
                 <img src="" alt="logo">
                 <nav>
                     <ul>
-                        <li><a href="#">HOME</a></li>
-                        <li><a href="#">ABOUT US</a></li>
-                        <li><a href="#">SERVICES</a></li>
-                        <li><a href="../contactus/contactus.html">CONTACT US</a></li>
+                    <li><a href="/Web-Engineering-project/main-page/main-page.php">HOME</a></li>
+                        <li><a href="/Web-Engineering-project/AboutUs/aboutUs.php">ABOUT US</a></li>
+                        <li><a href="/Web-Engineering-project/Services/services.php">SERVICES</a></li>
+                        <li><a href="/Web-Engineering-project/contactus/contactus.php">CONTACT US</a></li>
                         <?php if ($isLoggedIn): ?>
                         <li class="user-menu" onclick="togglePopupMenu()">
                             <span class="nav-link nav-link-active">
